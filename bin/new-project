@@ -22,6 +22,8 @@ else
     cd $proj_root/$proj_dir 
     mkdir -p R/data
     mkdir -p R/out
+    mkdir -p python/data
+    mkdir -p python/out
     touch ${proj_name}.org
 fi
 
