@@ -1,3 +1,15 @@
 #!/bin/bash
+# run a remote vim server under servername INSTANCE
+# invoking rvi [file] will start a new instance of
+# vim. If the server is running rvi will attach all
+# script parameters to the running instance.
 
-gvim --servername INSTANCE --remote $@
+name="INSTANCE"
+
+isrunning=`gvim --serverlist | grep "^${name}$" | wc -l`
+
+if [ $isrunning == 1 ]; then
+    gvim --servername $name --remote $@
+else
+    gvim --servername $name 
+fi
