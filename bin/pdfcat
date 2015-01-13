@@ -1,0 +1,16 @@
+#!/bin/bash
+
+i=0
+for f in $*
+do
+    if [ "$i" -eq 0 ]
+    then
+        files="$f"
+        let i=1
+    else
+        files="${files} $f"
+    fi
+done
+
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$files
+

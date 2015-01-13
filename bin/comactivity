@@ -1,0 +1,20 @@
+#!/bin/bash
+
+root=/var/log/comactivity/
+
+if [ ! -d "$root" ]; then 
+    mkdir $root
+fi
+
+file="comactivity.log"
+log=$root$file
+
+if [ ! -e "$log" ]; then 
+    touch $log
+    chown k:k $log
+fi
+
+df=`date +'%Y-%m-%d %H:00'`
+
+echo $df >> $log
+

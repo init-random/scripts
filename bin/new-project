@@ -1,0 +1,27 @@
+#!/bin/bash
+
+proj_dir=$1;
+proj_root=$HOME/projects;
+
+# get last index of
+rev=`echo ${proj_dir} | rev`;
+len=${#proj_dir};
+last_idx=`expr index $rev "/"`;
+let idx=$len-$last_idx+2;
+proj_name=`expr substr $proj_dir $idx 100`;
+if [ "" = "$proj_name" ]; then
+    proj_name=$proj_dir;
+fi
+
+if [ -d $proj_dir ]
+then
+    echo "$proj_dir exists"
+    exit
+else
+    mkdir -p $proj_root/$proj_dir
+    cd $proj_root/$proj_dir 
+    mkdir -p R/data
+    mkdir -p R/out
+    touch ${proj_name}.org
+fi
+
